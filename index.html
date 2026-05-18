@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arhat Shah | Student Programmer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f7f4ef;
+      --card: #ffffff;
+      --text: #1f1f1f;
+      --muted: #666666;
+      --accent: #111111;
+      --soft: #e8dfd3;
+      --border: #ded6cc;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(247, 244, 239, 0.82);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    }
+
+    nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.04em;
+    }
+
+    .logo span {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-btn {
+      border: 1px solid var(--text);
+      padding: 10px 18px;
+      border-radius: 999px;
+      color: var(--text) !important;
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding-top: 110px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      background: var(--soft);
+      border-radius: 50%;
+      top: 18%;
+      right: -110px;
+      filter: blur(4px);
+      opacity: 0.7;
+      z-index: -1;
+      transform: translateY(var(--parallax-soft, 0px));
+      transition: transform 0.08s linear;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 50%;
+      left: 5%;
+      bottom: 12%;
+      z-index: -1;
+      transform: translateY(var(--parallax-ring, 0px));
+      transition: transform 0.08s linear;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 14px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #28b463;
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn.primary {
+      background: var(--text);
+      color: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transform: rotate(1.5deg) translateY(var(--parallax-card, 0px));
+      transition: transform 0.08s linear, box-shadow 0.3s ease;
+      animation: floatCard 5s ease-in-out infinite;
+    }
+
+    @keyframes floatCard {
+      0%, 100% { margin-top: 0; }
+      50% { margin-top: -10px; }
+    }
+
+    .avatar {
+      height: 290px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #111, #3a332c, #cdbfae);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 6rem;
+      font-weight: 800;
+      letter-spacing: -0.08em;
+      margin-bottom: 24px;
+    }
+
+    .profile-card h3 {
+      font-size: 1.5rem;
+      letter-spacing: -0.04em;
+    }
+
+    .profile-card p {
+      margin: 8px 0 20px;
+      font-size: 0.95rem;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .mini-stat {
+      background: var(--bg);
+      border-radius: 18px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1.2rem;
+    }
+
+    .mini-stat span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 95px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.07em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 430px;
+    }
+
+    .about-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-banner {
+      position: absolute;
+      inset: 70px 0 auto 0;
+      height: 430px;
+      background:
+        linear-gradient(135deg, rgba(10,10,10,0.88), rgba(34,29,24,0.78)),
+        url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+      border-radius: 0 0 48px 48px;
+      z-index: -2;
+    }
+
+    .about-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.12), rgba(0,0,0,0.38)),
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 32%),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,0.08), transparent 28%);
+      z-index: -1;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.22);
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+
+    .about-hero {
+      min-height: 430px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 38px;
+      align-items: center;
+      color: #fff;
+      padding: 70px 0 40px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .about-hero h2 {
+      font-size: clamp(2.35rem, 5vw, 5rem);
+      line-height: 0.96;
+      letter-spacing: -0.075em;
+      max-width: 760px;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-shadow: 0 10px 24px rgba(0,0,0,0.35);
+      font-weight: 800;
+    }
+
+    .about-hero p {
+      max-width: 630px;
+      color: rgba(255,255,255,0.92);
+      font-size: 1.08rem;
+      line-height: 1.8;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.28);
+      font-weight: 500;
+    }
+
+    .about-image-wrap {
+      height: 330px;
+      border-radius: 34px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.24);
+      transform: rotate(1.5deg);
+    }
+
+    .about-main-img {
+      width: 100%;
+      height: 115%;
+      object-fit: cover;
+      display: block;
+      transform: translateY(var(--about-img-parallax, 0px));
+      transition: transform 0.08s linear;
+    }
+
+    .about-story-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      gap: 22px;
+      margin-top: 34px;
+    }
+
+    .story-card {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.06);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-card::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--soft);
+      right: -45px;
+      top: -45px;
+      opacity: 0.45;
+      transition: 0.35s ease;
+    }
+
+    .story-card:hover::before {
+      transform: scale(1.35);
+    }
+
+    .story-card.large {
+      grid-row: span 2;
+    }
+
+    .story-card h3,
+    .skills-panel h3 {
+      font-size: 1.45rem;
+      letter-spacing: -0.045em;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .story-card p {
+      color: var(--muted);
+      position: relative;
+    }
+
+    .story-card p + p {
+      margin-top: 14px;
+    }
+
+    .card-number {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 28px;
+      letter-spacing: 0.14em;
+    }
+
+    .skills-panel {
+      margin-top: 22px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 28px;
+      align-items: start;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.055);
+    }
+
+    .skills-panel .section-tag {
+      background: var(--bg);
+      border-color: var(--border);
+    }
+
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.04);
+    }
+
+    .info-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.04em;
+    }
+
+    .info-card p {
+      color: var(--muted);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .skill {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.045);
+      transition: 0.3s ease;
+      transform: translateY(0) scale(1);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-img {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+      background: #f2f2f2;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      object-position: top;
+      transition: 0.5s ease;
+      display: block;
+      transform: translateY(var(--img-parallax, 0px));
+    }
+
+    .product-card:hover .product-img img {
+      transform: scale(1.05);
+    }
+
+    .product-card:nth-child(2) .product-img {
+      background: linear-gradient(135deg, #e9e9e9, #a99b8d);
+    }
+
+    .product-card:nth-child(3) .product-img {
+      background: linear-gradient(135deg, #fff4df, #d7a95d);
+    }
+
+    .product-card:nth-child(4) .product-img {
+      background: linear-gradient(135deg, #f5eee7, #8f7d68);
+    }
+
+    .product-card:nth-child(5) .product-img {
+      background: linear-gradient(135deg, #f2f2f2, #111111);
+      color: #fff;
+    }
+
+    .product-card:nth-child(6) .product-img {
+      background: linear-gradient(135deg, #eee1d2, #69513e);
+      color: #fff;
+    }
+
+    .product-body {
+      padding: 24px;
+    }
+
+    .product-body small {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+    }
+
+    .product-body h3 {
+      margin: 8px 0;
+      font-size: 1.25rem;
+      letter-spacing: -0.04em;
+    }
+
+    .product-body p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .product-link {
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-box {
+      background: #111;
+      color: #fff;
+      border-radius: 36px;
+      padding: 56px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      transform: translateY(var(--contact-parallax, 0px));
+      transition: transform 0.08s linear;
+    }
+
+    .contact-box::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      right: -80px;
+      bottom: -80px;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      margin-bottom: 18px;
+    }
+
+    .contact-box p {
+      color: rgba(255,255,255,0.72);
+      max-width: 560px;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 2;
+    }
+
+    .contact-actions .btn {
+      background: #fff;
+      color: #111;
+      border-color: #fff;
+    }
+
+    footer {
+      padding: 30px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(42px) scale(0.98);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+      transition-delay: var(--delay, 0s);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .fade-left {
+      opacity: 0;
+      transform: translateX(-45px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .fade-right {
+      opacity: 0;
+      transform: translateX(45px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .fade-left.active,
+    .fade-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-hero,
+      .about-story-grid,
+      .skills-panel,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .profile-card {
+        transform: rotate(0deg);
+      }
+
+      .about-banner {
+        background-attachment: scroll;
+        height: 520px;
+      }
+
+      .about-image-wrap {
+        transform: rotate(0deg);
+      }
+
+      .story-card.large {
+        grid-row: auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        height: 68px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        background: rgba(247, 244, 239, 0.98);
+        flex-direction: column;
+        padding: 24px;
+        gap: 20px;
+        border-bottom: 1px solid var(--border);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero {
+        padding-top: 95px;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 14px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        padding: 34px 24px;
+        border-radius: 28px;
+      }
+
+      .mini-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#home" class="logo">Arhat<span>.dev</span></a>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <div class="nav-links" id="navLinks">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#work">Work</a>
+          <a href="#contact" class="nav-btn">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="dot"></span> Student Programmer • Fountainhead School</div>
+          <h1>Hi, I’m<br>Arhat Shah.</h1>
+          <p>
+            I am a student at Fountainhead School learning programming and building clean, useful websites and digital projects. This profile showcases who I am, what I am learning, and the online work I have created.
+          </p>
+          <div class="hero-actions">
+            <a href="#work" class="btn primary">View My Work</a>
+            <a href="#contact" class="btn">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="profile-card reveal">
+          <div class="avatar">AS</div>
+          <h3>Arhat Shah</h3>
+          <p>Programming learner focused on websites, design, frontend development, and practical digital solutions.</p>
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <strong>HTML</strong>
+              <span>Web Structure</span>
+            </div>
+            <div class="mini-stat">
+              <strong>CSS</strong>
+              <span>Design</span>
+            </div>
+            <div class="mini-stat">
+              <strong>JS</strong>
+              <span>Interaction</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="about-banner" aria-hidden="true"></div>
+      <div class="container">
+        <div class="about-hero reveal">
+          <div>
+            <span class="section-tag">About Me</span>
+            <h2>Building clean digital experiences with code</h2>
+            <!-- <p>
+              I’m Arhat Shah, a student at Fountainhead School and a programming learner focused on creating modern websites, digital products, and interactive user experiences.
+            </p> -->
+          </div>
+          <div class="about-image-wrap">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Programming setup" class="about-main-img" />
+          </div>
+        </div>
+
+        <div class="about-story-grid">
+          <div class="story-card large reveal">
+            <h3>My Journey</h3>
+            <p>
+              I started working on programming because I enjoy turning ideas into real websites and digital experiences. I like building projects that are simple to use, visually clean, and useful for people, brands, and businesses.
+            </p>
+            <p>
+              My work includes business websites, portfolio websites, product showcase pages, e-commerce style layouts, and creative frontend projects. I am constantly learning how to improve design, responsiveness, animations, and overall user experience.
+            </p>
+          </div>
+
+          <div class="story-card reveal">
+            <span class="card-number">01</span>
+            <h3>What I Focus On</h3>
+            <p>Minimal layouts, smooth interfaces, responsive design, and professional web experiences.</p>
+          </div>
+
+          <div class="story-card reveal">
+            <span class="card-number">02</span>
+            <h3>How I Learn</h3>
+            <p>I learn by building real projects, improving them, testing ideas, and exploring better design styles.</p>
+          </div>
+
+          <div class="story-card reveal">
+            <span class="card-number">03</span>
+            <h3>My Goal</h3>
+            <p>To become better at programming, design, app development, UI/UX, and creating useful digital products.</p>
+          </div>
+        </div>
+
+        <div class="skills-panel reveal" id="skills">
+          <div>
+            <span class="section-tag">Skills</span>
+            <h3>Tools, technologies & creative areas I work with</h3>
+          </div>
+          <div class="skills">
+            <span class="skill">Python</span>
+            <span class="skill">Data Science</span>
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">Bootstrap</span>
+            <span class="skill">Web Development</span>
+            <span class="skill">App Development</span>
+            <span class="skill">Web Designing</span>
+            <span class="skill">UI/UX Designing</span>
+            <span class="skill">Game Designing</span>
+            <span class="skill">C++</span>
+            <span class="skill">C#</span>
+            <span class="skill">Frontend Development</span>
+            <span class="skill">Responsive Design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Products & Work</h2>
+          <p>Use this section to showcase your previous websites, client work, school projects, and other online creations.</p>
+        </div>
+
+        <div class="products-grid">
+          <article class="product-card reveal">
+            <div class="product-img">
+              <img src="https://image.thum.io/get/width/1200/https://www.tdwjewellery.com/" alt="TDW Jewellery Website Preview">
+            </div>
+            <div class="product-body">
+              <small>Jewellery Website</small>
+              <h3>TDW Jewellery</h3>
+              <p>A premium jewellery website designed to showcase elegant products and brand identity.</p>
+              <a href="https://www.tdwjewellery.com/" target="_blank" class="product-link">View Website →</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-img">
+              <img src="https://image.thum.io/get/width/1200/https://www.printleisure.com/" alt="Print Leisure Website Preview">
+            </div>
+            <div class="product-body">
+              <small>Printing & Lifestyle Website</small>
+              <h3>Print Leisure</h3>
+              <p>A modern website for showcasing printing, branding, and creative product services.</p>
+              <a href="https://www.printleisure.com/" target="_blank" class="product-link">View Website →</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-img">
+              <img src="https://image.thum.io/get/width/1200/https://yataxfinity.com/" alt="Yataxfinity Website Preview">
+            </div>
+            <div class="product-body">
+              <small>Financial Services Website</small>
+              <h3>Yataxfinity</h3>
+              <p>A minimal and professional website for a financial service provider.</p>
+              <a href="https://yataxfinity.com" target="_blank" class="product-link">View Website →</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-img">
+              <img src="https://image.thum.io/get/width/1200/https://chaluchinese.ca/" alt="Chalu Chinese Website Preview">
+            </div>
+            <div class="product-body">
+              <small>Restaurant Website</small>
+              <h3>Chalu Chinese</h3>
+              <p>A restaurant website designed to showcase food, brand identity, and online presence.</p>
+              <a href="https://chaluchinese.ca" target="_blank" class="product-link">View Website →</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-img">
+              <img src="https://image.thum.io/get/width/1200/https://arhat1111.github.io/Blooms-N-Breezes-Professional-Landscaping-Gardening-Solutions/" alt="Blooms N Breezes Website Preview">
+            </div>
+            <div class="product-body">
+              <small>Landscaping Website</small>
+              <h3>Blooms N Breezes</h3>
+              <p>A professional landscaping and gardening website with a clean service-focused layout.</p>
+              <a href="https://arhat1111.github.io/Blooms-N-Breezes-Professional-Landscaping-Gardening-Solutions/" target="_blank" class="product-link">View Website →</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-img">
+              <img src="https://image.thum.io/get/width/1200/https://arhat1111.github.io/Clothing-brand-website/" alt="Clothing Brand Website Preview">
+            </div>
+            <div class="product-body">
+              <small>Fashion Website</small>
+              <h3>Clothing Brand Website</h3>
+              <p>A clothing brand website concept with product sections, modern styling, and responsive design.</p>
+              <a href="https://arhat1111.github.io/Clothing-brand-website/" target="_blank" class="product-link">View Website →</a>
+            </div>
+          </article>
+
+          <!-- <article class="product-card reveal">
+            <div class="product-img">
+              <img src="https://image.thum.io/get/width/1200/https://mahendradecorwalls.in/" alt="Mahendra Decor Walls Website Preview">
+            </div>
+            <div class="product-body">
+              <small>Interior Decor </small>
+              <h3>Mahendra Decor Walls</h3>
+              <p>A professional decor and wall design website built to showcase products, services, and brand presence.</p>
+              <a href="https://mahendradecorwalls.in/" target="_blank" class="product-link">View Website →</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-img">
+              <img src="https://image.thum.io/get/width/1200/https://arhat1111.github.io/TheCrabCo-E-Commerce-Website-/" alt="The Crab Co Website Preview">
+            </div>
+            <div class="product-body">
+              <small>E-Commerce Website</small>
+              <h3>The Crab Co.</h3>
+              <p>An e-commerce style website with product showcase, shopping flow, and clean interface.</p>
+              <a href="https://arhat1111.github.io/TheCrabCo-E-Commerce-Website-/" target="_blank" class="product-link">View Website →</a>
+            </div>
+          </article> -->
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div>
+            <h2>Let’s connect.</h2>
+            <p>
+              I am open to learning opportunities, website projects, collaborations, and feedback on my programming journey.
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a href="mailto:arhat.j.h.1111@gmaik.com" class="btn">Email Me</a>
+            <a href="https://wa.me/919558187425" target="_blank" class="btn">Message on WhatsApp</a>
+            <a href="#work" class="btn">See My Work</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Arhat Shah. Built with HTML, CSS & JavaScript.
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuBtn.textContent = navLinks.classList.contains('active') ? '×' : '☰';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuBtn.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const revealElements = document.querySelectorAll('.reveal, .fade-left, .fade-right');
+    const productImages = document.querySelectorAll('.product-img img');
+    const hero = document.querySelector('.hero');
+    const profileCard = document.querySelector('.profile-card');
+    const contactBox = document.querySelector('.contact-box');
+    const aboutMainImg = document.querySelector('.about-main-img');
+
+    revealElements.forEach((element, index) => {
+      element.style.setProperty('--delay', `${Math.min(index * 0.05, 0.35)}s`);
+    });
+
+    function revealOnScroll() {
+      revealElements.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const revealPoint = 110;
+
+        if (elementTop < windowHeight - revealPoint) {
+          element.classList.add('active');
+        }
+      });
+    }
+
+    function parallaxScroll() {
+      const scrollY = window.scrollY;
+
+      if (hero) {
+        hero.style.setProperty('--parallax-soft', `${scrollY * 0.12}px`);
+        hero.style.setProperty('--parallax-ring', `${scrollY * -0.08}px`);
+      }
+
+      if (profileCard) {
+        profileCard.style.setProperty('--parallax-card', `${scrollY * -0.035}px`);
+      }
+
+      if (aboutMainImg) {
+        const rect = aboutMainImg.getBoundingClientRect();
+        const movement = (rect.top - window.innerHeight / 2) * -0.03;
+        aboutMainImg.style.setProperty('--about-img-parallax', `${movement}px`);
+      }
+
+      productImages.forEach(img => {
+        const parent = img.closest('.product-card');
+        const rect = parent.getBoundingClientRect();
+        const movement = (rect.top - window.innerHeight / 2) * -0.035;
+        img.style.setProperty('--img-parallax', `${movement}px`);
+      });
+
+      if (contactBox) {
+        const rect = contactBox.getBoundingClientRect();
+        const movement = (rect.top - window.innerHeight / 2) * -0.025;
+        contactBox.style.setProperty('--contact-parallax', `${movement}px`);
+      }
+    }
+
+    let ticking = false;
+
+    function handleScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          revealOnScroll();
+          parallaxScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('load', handleScroll);
+    handleScroll();
+  </script>
+</body>
+</html>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arhat Shah | Student Programmer</title>
+
   <style>
     * {
       margin: 0;
@@ -16,7 +17,6 @@
       --card: #ffffff;
       --text: #1f1f1f;
       --muted: #666666;
-      --accent: #111111;
       --soft: #e8dfd3;
       --border: #ded6cc;
       --shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
@@ -24,10 +24,8 @@
 
     html {
       scroll-behavior: smooth;
-    }
-
-    html, body {
       scroll-padding-top: 90px;
+      overflow-x: hidden;
     }
 
     body {
@@ -36,6 +34,7 @@
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
+      width: 100%;
     }
 
     a {
@@ -53,10 +52,11 @@
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 1000;
+      z-index: 2000;
       backdrop-filter: blur(16px);
-      background: rgba(247, 244, 239, 0.82);
+      background: rgba(247, 244, 239, 0.88);
       border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      overflow: visible;
     }
 
     nav {
@@ -64,6 +64,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+      overflow: visible;
     }
 
     .logo {
@@ -102,10 +104,12 @@
 
     .menu-btn {
       display: none;
-      background: none;
+      background: transparent;
       border: none;
-      font-size: 1.8rem;
+      font-size: 2rem;
       cursor: pointer;
+      color: #111;
+      z-index: 3000;
     }
 
     .hero {
@@ -114,6 +118,7 @@
       align-items: center;
       padding-top: 110px;
       position: relative;
+      overflow: hidden;
     }
 
     .hero::before {
@@ -129,7 +134,6 @@
       opacity: 0.7;
       z-index: -1;
       transform: translateY(var(--parallax-soft, 0px));
-      transition: transform 0.08s linear;
     }
 
     .hero::after {
@@ -143,7 +147,6 @@
       bottom: 12%;
       z-index: -1;
       transform: translateY(var(--parallax-ring, 0px));
-      transition: transform 0.08s linear;
     }
 
     .hero-grid {
@@ -172,6 +175,7 @@
       height: 8px;
       background: #28b463;
       border-radius: 50%;
+      flex-shrink: 0;
     }
 
     h1 {
@@ -224,13 +228,17 @@
       padding: 28px;
       box-shadow: var(--shadow);
       transform: rotate(1.5deg) translateY(var(--parallax-card, 0px));
-      transition: transform 0.08s linear, box-shadow 0.3s ease;
       animation: floatCard 5s ease-in-out infinite;
     }
 
     @keyframes floatCard {
-      0%, 100% { margin-top: 0; }
-      50% { margin-top: -10px; }
+      0%, 100% {
+        margin-top: 0;
+      }
+
+      50% {
+        margin-top: -10px;
+      }
     }
 
     .avatar {
@@ -254,6 +262,7 @@
     .profile-card p {
       margin: 8px 0 20px;
       font-size: 0.95rem;
+      color: var(--muted);
     }
 
     .mini-stats {
@@ -281,6 +290,7 @@
 
     section {
       padding: 95px 0;
+      overflow: hidden;
     }
 
     .section-head {
@@ -312,8 +322,8 @@
       inset: 70px 0 auto 0;
       height: 430px;
       background:
-        linear-gradient(135deg, rgba(10,10,10,0.88), rgba(34,29,24,0.78)),
-        url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+        linear-gradient(135deg, rgba(10, 10, 10, 0.88), rgba(34, 29, 24, 0.78)),
+        url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80") center/cover fixed;
       border-radius: 0 0 48px 48px;
       z-index: -2;
     }
@@ -323,9 +333,9 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,0.12), rgba(0,0,0,0.38)),
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 32%),
-        radial-gradient(circle at 80% 60%, rgba(255,255,255,0.08), transparent 28%);
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.38)),
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 32%),
+        radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.08), transparent 28%);
       z-index: -1;
     }
 
@@ -336,15 +346,15 @@
       margin-bottom: 14px;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       color: #ffffff;
       font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       backdrop-filter: blur(12px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
     }
 
     .about-hero {
@@ -366,16 +376,16 @@
       max-width: 760px;
       margin-bottom: 20px;
       color: #ffffff;
-      text-shadow: 0 10px 24px rgba(0,0,0,0.35);
+      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
       font-weight: 800;
     }
 
     .about-hero p {
       max-width: 630px;
-      color: rgba(255,255,255,0.92);
+      color: rgba(255, 255, 255, 0.92);
       font-size: 1.08rem;
       line-height: 1.8;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.28);
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
       font-weight: 500;
     }
 
@@ -383,8 +393,8 @@
       height: 330px;
       border-radius: 34px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.22);
-      box-shadow: 0 24px 70px rgba(0,0,0,0.24);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
       transform: rotate(1.5deg);
     }
 
@@ -394,7 +404,6 @@
       object-fit: cover;
       display: block;
       transform: translateY(var(--about-img-parallax, 0px));
-      transition: transform 0.08s linear;
     }
 
     .about-story-grid {
@@ -405,11 +414,11 @@
     }
 
     .story-card {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       border: 1px solid var(--border);
       border-radius: 30px;
       padding: 28px;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.06);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
       backdrop-filter: blur(16px);
       position: relative;
       overflow: hidden;
@@ -472,37 +481,19 @@
       grid-template-columns: 0.75fr 1.25fr;
       gap: 28px;
       align-items: start;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.055);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.055);
     }
 
     .skills-panel .section-tag {
       background: var(--bg);
       border-color: var(--border);
-    }
-
-    .info-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.04);
-    }
-
-    .info-card h3 {
-      font-size: 1.35rem;
-      margin-bottom: 10px;
-      letter-spacing: -0.04em;
-    }
-
-    .info-card p {
-      color: var(--muted);
+      color: var(--text);
     }
 
     .skills {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 20px;
     }
 
     .skill {
@@ -524,9 +515,8 @@
       border: 1px solid var(--border);
       border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.045);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.045);
       transition: 0.3s ease;
-      transform: translateY(0) scale(1);
     }
 
     .product-card:hover {
@@ -537,7 +527,6 @@
     .product-img {
       height: 220px;
       overflow: hidden;
-      position: relative;
       background: #f2f2f2;
     }
 
@@ -553,28 +542,6 @@
 
     .product-card:hover .product-img img {
       transform: scale(1.05);
-    }
-
-    .product-card:nth-child(2) .product-img {
-      background: linear-gradient(135deg, #e9e9e9, #a99b8d);
-    }
-
-    .product-card:nth-child(3) .product-img {
-      background: linear-gradient(135deg, #fff4df, #d7a95d);
-    }
-
-    .product-card:nth-child(4) .product-img {
-      background: linear-gradient(135deg, #f5eee7, #8f7d68);
-    }
-
-    .product-card:nth-child(5) .product-img {
-      background: linear-gradient(135deg, #f2f2f2, #111111);
-      color: #fff;
-    }
-
-    .product-card:nth-child(6) .product-img {
-      background: linear-gradient(135deg, #eee1d2, #69513e);
-      color: #fff;
     }
 
     .product-body {
@@ -619,7 +586,6 @@
       position: relative;
       overflow: hidden;
       transform: translateY(var(--contact-parallax, 0px));
-      transition: transform 0.08s linear;
     }
 
     .contact-box::after {
@@ -641,7 +607,7 @@
     }
 
     .contact-box p {
-      color: rgba(255,255,255,0.72);
+      color: rgba(255, 255, 255, 0.72);
       max-width: 560px;
     }
 
@@ -677,24 +643,6 @@
       transform: translateY(0) scale(1);
     }
 
-    .fade-left {
-      opacity: 0;
-      transform: translateX(-45px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
-    }
-
-    .fade-right {
-      opacity: 0;
-      transform: translateX(45px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
-    }
-
-    .fade-left.active,
-    .fade-right.active {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
     @media (max-width: 900px) {
       .hero-grid,
       .about-hero,
@@ -709,7 +657,7 @@
       }
 
       .profile-card {
-        transform: rotate(0deg);
+        transform: none !important;
       }
 
       .about-banner {
@@ -718,7 +666,7 @@
       }
 
       .about-image-wrap {
-        transform: rotate(0deg);
+        transform: none;
       }
 
       .story-card.large {
@@ -727,64 +675,238 @@
     }
 
     @media (max-width: 720px) {
+      html,
+      body {
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        text-align: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 18px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
       nav {
         height: 68px;
       }
 
+      .logo {
+        font-size: 1rem;
+      }
+
       .menu-btn {
         display: block;
+        position: relative;
+        z-index: 3001;
+        background: transparent;
+        border: none;
+        color: #111;
+        font-size: 2rem;
+        line-height: 1;
+        cursor: pointer;
       }
 
       .nav-links {
-        position: absolute;
+        position: fixed;
         top: 68px;
         left: 0;
+        right: 0;
         width: 100%;
         background: rgba(247, 244, 239, 0.98);
+        backdrop-filter: blur(20px);
+        display: flex;
         flex-direction: column;
-        padding: 24px;
-        gap: 20px;
+        align-items: center;
+        gap: 22px;
+        padding: 30px 20px;
         border-bottom: 1px solid var(--border);
-        display: none;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-15px);
+        transition: all 0.3s ease;
+        z-index: 3000;
       }
 
       .nav-links.active {
-        display: flex;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        font-size: 1rem;
       }
 
       .hero {
-        padding-top: 95px;
+        min-height: auto;
+        padding-top: 105px;
+        padding-bottom: 55px;
       }
 
-      .section-head {
-        display: block;
+      .hero::before {
+        width: 260px;
+        height: 260px;
+        right: -70px;
+        top: 35%;
       }
 
-      .section-head p {
-        margin-top: 14px;
+      .hero::after {
+        display: none;
       }
 
-      .products-grid {
-        grid-template-columns: 1fr;
+      .hero-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 34px;
+        width: 100%;
       }
 
-      .contact-box {
-        padding: 34px 24px;
-        border-radius: 28px;
+      .eyebrow {
+        max-width: 100%;
+        font-size: 0.75rem;
+        padding: 8px 12px;
+        margin-left: auto;
+        margin-right: auto;
+        white-space: normal;
+      }
+
+      h1 {
+        font-size: 3.05rem;
+        line-height: 0.95;
+        text-align: center;
+      }
+
+      .hero p {
+        max-width: 330px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1rem;
+      }
+
+      .hero-actions {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .btn {
+        min-height: 46px;
+        padding: 0 18px;
+        font-size: 0.9rem;
+      }
+
+      .profile-card {
+        width: 100%;
+        max-width: 330px;
+        margin: 0 auto;
+        padding: 22px;
+        transform: none !important;
+        animation: none;
+      }
+
+      .avatar {
+        height: 230px;
+        font-size: 4.5rem;
       }
 
       .mini-stats {
         grid-template-columns: 1fr;
       }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .section-head {
+        display: block;
+        text-align: center;
+      }
+
+      .section-head p {
+        margin: 14px auto 0;
+      }
+
+      .about-hero,
+      .about-story-grid,
+      .skills-panel,
+      .products-grid,
+      .contact-box {
+        grid-template-columns: 1fr !important;
+        width: 100%;
+      }
+
+      .about-banner {
+        height: 620px;
+        border-radius: 0 0 32px 32px;
+      }
+
+      .about-hero {
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .about-hero h2 {
+        font-size: 2.4rem;
+      }
+
+      .about-hero p {
+        font-size: 1rem;
+      }
+
+      .about-image-wrap,
+      .product-card {
+        max-width: 330px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .skills-panel {
+        padding: 24px;
+      }
+
+      .skills {
+        justify-content: center;
+      }
+
+      .product-img {
+        height: 200px;
+      }
+
+      .contact-box {
+        padding: 34px 22px;
+      }
+
+      .contact-actions {
+        align-items: center;
+      }
+
+      .contact-actions .btn {
+        width: 100%;
+        max-width: 260px;
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="container">
       <nav>
         <a href="#home" class="logo">Arhat<span>.dev</span></a>
-        <button class="menu-btn" id="menuBtn">☰</button>
+
+        <button id="menuBtn" class="menu-btn" type="button">☰</button>
+
         <div class="nav-links" id="navLinks">
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
@@ -799,11 +921,19 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="reveal">
-          <div class="eyebrow"><span class="dot"></span> Student Programmer • Fountainhead School</div>
+          <div class="eyebrow">
+            <span class="dot"></span>
+            Student Programmer • Fountainhead School
+          </div>
+
           <h1>Hi, I’m<br>Arhat Shah.</h1>
+
           <p>
-            I am a student at Fountainhead School learning programming and building clean, useful websites and digital projects. This profile showcases who I am, what I am learning, and the online work I have created.
+            I am a student at Fountainhead School learning programming and building clean,
+            useful websites and digital projects. This profile showcases who I am, what I am
+            learning, and the online work I have created.
           </p>
+
           <div class="hero-actions">
             <a href="#work" class="btn primary">View My Work</a>
             <a href="#contact" class="btn">Get in Touch</a>
@@ -813,11 +943,15 @@
         <div class="profile-card reveal">
           <div class="avatar">AS</div>
           <h3>Arhat Shah</h3>
-          <p>Programming learner focused on websites, design, frontend development, and practical digital solutions.</p>
+          <p>
+            Programming learner focused on websites, design, frontend development,
+            and practical digital solutions.
+          </p>
+
           <div class="mini-stats">
             <div class="mini-stat">
               <strong>HTML</strong>
-              <span>Web Structure</span>
+              <span>Structure</span>
             </div>
             <div class="mini-stat">
               <strong>CSS</strong>
@@ -833,18 +967,25 @@
     </section>
 
     <section id="about" class="about-section">
-      <div class="about-banner" aria-hidden="true"></div>
+      <div class="about-banner"></div>
+
       <div class="container">
         <div class="about-hero reveal">
           <div>
             <span class="section-tag">About Me</span>
-            <h2>Building clean digital experiences with code</h2>
-            <!-- <p>
-              I’m Arhat Shah, a student at Fountainhead School and a programming learner focused on creating modern websites, digital products, and interactive user experiences.
-            </p> -->
+            <h2>Building clean digital experiences with code, design, and curiosity.</h2>
+            <p>
+              I’m Arhat Shah, a student at Fountainhead School and a programming learner
+              focused on creating modern websites, digital products, and interactive user experiences.
+            </p>
           </div>
+
           <div class="about-image-wrap">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Programming setup" class="about-main-img" />
+            <img
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80"
+              alt="Programming setup"
+              class="about-main-img"
+            />
           </div>
         </div>
 
@@ -852,10 +993,14 @@
           <div class="story-card large reveal">
             <h3>My Journey</h3>
             <p>
-              I started working on programming because I enjoy turning ideas into real websites and digital experiences. I like building projects that are simple to use, visually clean, and useful for people, brands, and businesses.
+              I started working on programming because I enjoy turning ideas into real websites
+              and digital experiences. I like building projects that are simple to use,
+              visually clean, and useful for people, brands, and businesses.
             </p>
             <p>
-              My work includes business websites, portfolio websites, product showcase pages, e-commerce style layouts, and creative frontend projects. I am constantly learning how to improve design, responsiveness, animations, and overall user experience.
+              My work includes business websites, portfolio websites, product showcase pages,
+              e-commerce style layouts, and creative frontend projects. I am constantly learning
+              how to improve design, responsiveness, animations, and overall user experience.
             </p>
           </div>
 
@@ -874,7 +1019,7 @@
           <div class="story-card reveal">
             <span class="card-number">03</span>
             <h3>My Goal</h3>
-            <p>To become better at programming, design, app development, UI/UX, and creating useful digital products.</p>
+            <p>To become better at programming, design, app development, UI/UX, and useful digital products.</p>
           </div>
         </div>
 
@@ -883,6 +1028,7 @@
             <span class="section-tag">Skills</span>
             <h3>Tools, technologies & creative areas I work with</h3>
           </div>
+
           <div class="skills">
             <span class="skill">Python</span>
             <span class="skill">Data Science</span>
@@ -908,7 +1054,9 @@
       <div class="container">
         <div class="section-head reveal">
           <h2>Products & Work</h2>
-          <p>Use this section to showcase your previous websites, client work, school projects, and other online creations.</p>
+          <p>
+            A collection of websites and digital projects I have worked on.
+          </p>
         </div>
 
         <div class="products-grid">
@@ -926,22 +1074,10 @@
 
           <article class="product-card reveal">
             <div class="product-img">
-              <img src="https://image.thum.io/get/width/1200/https://arhat1111.github.io/Clothing-brand-website/" alt="Clothing Brand Website Preview">
-            </div>
-            <div class="product-body">
-              <small>Fashion Website</small>
-              <h3>Fable BY Kavita Anu -- Clothing Webiste</h3>
-              <p>A clothing brand website concept with product sections, modern styling, and responsive design.</p>
-              <a href="https://www.fablebykavitaanu.in/" target="_blank" class="product-link">View Website →</a>
-            </div>
-          </article>
-
-          <article class="product-card reveal">
-            <div class="product-img">
               <img src="https://image.thum.io/get/width/1200/https://www.printleisure.com/" alt="Print Leisure Website Preview">
             </div>
             <div class="product-body">
-              <small>Printing & Lifestyle Website</small>
+              <small>Printing Website</small>
               <h3>Print Leisure</h3>
               <p>A modern website for showcasing printing, branding, and creative product services.</p>
               <a href="https://www.printleisure.com/" target="_blank" class="product-link">View Website →</a>
@@ -953,7 +1089,7 @@
               <img src="https://image.thum.io/get/width/1200/https://yataxfinity.com/" alt="Yataxfinity Website Preview">
             </div>
             <div class="product-body">
-              <small>Financial Services Website</small>
+              <small>Financial Website</small>
               <h3>Yataxfinity</h3>
               <p>A minimal and professional website for a financial service provider.</p>
               <a href="https://yataxfinity.com" target="_blank" class="product-link">View Website →</a>
@@ -974,39 +1110,37 @@
 
           <article class="product-card reveal">
             <div class="product-img">
+              <img src="https://image.thum.io/get/width/1200/https://mahendradecorwalls.in/" alt="Mahendra Decor Walls Website Preview">
+            </div>
+            <div class="product-body">
+              <small>Interior Decor Website</small>
+              <h3>Mahendra Decor Walls</h3>
+              <p>A professional decor and wall design website built to showcase products and services.</p>
+              <a href="https://mahendradecorwalls.in/" target="_blank" class="product-link">View Website →</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-img">
               <img src="https://image.thum.io/get/width/1200/https://arhat1111.github.io/Blooms-N-Breezes-Professional-Landscaping-Gardening-Solutions/" alt="Blooms N Breezes Website Preview">
             </div>
             <div class="product-body">
               <small>Landscaping Website</small>
               <h3>Blooms N Breezes</h3>
-              <p>A professional landscaping and gardening website with a clean service-focused layout.</p>
+              <p>A professional landscaping and gardening website with a service-focused layout.</p>
               <a href="https://arhat1111.github.io/Blooms-N-Breezes-Professional-Landscaping-Gardening-Solutions/" target="_blank" class="product-link">View Website →</a>
             </div>
           </article>
-          
+
           <article class="product-card reveal">
             <div class="product-img">
-              <img src="https://image.thum.io/get/width/1200/https://arhat1111.github.io/Seramore_Jewels/" alt="Seramore Jewellery Website Preview">
+              <img src="https://image.thum.io/get/width/1200/https://arhat1111.github.io/Clothing-brand-website/" alt="Clothing Brand Website Preview">
             </div>
             <div class="product-body">
-              <small>Jewellery Website</small>
-              <h3>Seramore Jewellery -- Jewellery Webiste</h3>
-              <p>A jewellelry brand website concept with product sections, modern styling, and responsive design.</p>
-              <a href="https://arhat1111.github.io/Seramore_Jewels/" target="_blank" class="product-link">View Website →</a>
-            </div>
-          </article>
-
-          
-
-          <!-- <article class="product-card reveal">
-            <div class="product-img">
-              <img src="https://image.thum.io/get/width/1200/https://mahendradecorwalls.in/" alt="Mahendra Decor Walls Website Preview">
-            </div>
-            <div class="product-body">
-              <small>Interior Decor </small>
-              <h3>Mahendra Decor Walls</h3>
-              <p>A professional decor and wall design website built to showcase products, services, and brand presence.</p>
-              <a href="https://mahendradecorwalls.in/" target="_blank" class="product-link">View Website →</a>
+              <small>Fashion Website</small>
+              <h3>Clothing Brand Website</h3>
+              <p>A clothing brand concept with product sections, modern styling, and responsive design.</p>
+              <a href="https://arhat1111.github.io/Clothing-brand-website/" target="_blank" class="product-link">View Website →</a>
             </div>
           </article>
 
@@ -1020,7 +1154,7 @@
               <p>An e-commerce style website with product showcase, shopping flow, and clean interface.</p>
               <a href="https://arhat1111.github.io/TheCrabCo-E-Commerce-Website-/" target="_blank" class="product-link">View Website →</a>
             </div>
-          </article> -->
+          </article>
         </div>
       </div>
     </section>
@@ -1031,12 +1165,14 @@
           <div>
             <h2>Let’s connect.</h2>
             <p>
-              I am open to learning opportunities, website projects, collaborations, and feedback on my programming journey.
+              I am open to learning opportunities, website projects, collaborations,
+              and feedback on my programming journey.
             </p>
           </div>
+
           <div class="contact-actions">
-            <a href="mailto:arhat.j.h.1111@gmaik.com" class="btn">Email Me</a>
-            <a href="https://wa.me/919558187425" target="_blank" class="btn">Message on WhatsApp</a>
+            <a href="mailto:your-email@example.com" class="btn">Email Me</a>
+            <a href="https://wa.me/919999999999" target="_blank" class="btn">Message on WhatsApp</a>
             <a href="#work" class="btn">See My Work</a>
           </div>
         </div>
@@ -1051,42 +1187,41 @@
   </footer>
 
   <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.getElementById('navLinks');
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
 
-    menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      menuBtn.textContent = navLinks.classList.contains('active') ? '×' : '☰';
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      menuBtn.innerHTML = navLinks.classList.contains("active") ? "✕" : "☰";
     });
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuBtn.textContent = '☰';
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        menuBtn.innerHTML = "☰";
       });
     });
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const revealElements = document.querySelectorAll('.reveal, .fade-left, .fade-right');
-    const productImages = document.querySelectorAll('.product-img img');
-    const hero = document.querySelector('.hero');
-    const profileCard = document.querySelector('.profile-card');
-    const contactBox = document.querySelector('.contact-box');
-    const aboutMainImg = document.querySelector('.about-main-img');
+    const revealElements = document.querySelectorAll(".reveal");
+    const productImages = document.querySelectorAll(".product-img img");
+    const hero = document.querySelector(".hero");
+    const profileCard = document.querySelector(".profile-card");
+    const contactBox = document.querySelector(".contact-box");
+    const aboutMainImg = document.querySelector(".about-main-img");
 
     revealElements.forEach((element, index) => {
-      element.style.setProperty('--delay', `${Math.min(index * 0.05, 0.35)}s`);
+      element.style.setProperty("--delay", `${Math.min(index * 0.05, 0.35)}s`);
     });
 
     function revealOnScroll() {
       revealElements.forEach(element => {
         const windowHeight = window.innerHeight;
         const elementTop = element.getBoundingClientRect().top;
-        const revealPoint = 110;
 
-        if (elementTop < windowHeight - revealPoint) {
-          element.classList.add('active');
+        if (elementTop < windowHeight - 110) {
+          element.classList.add("active");
         }
       });
     }
@@ -1095,31 +1230,33 @@
       const scrollY = window.scrollY;
 
       if (hero) {
-        hero.style.setProperty('--parallax-soft', `${scrollY * 0.12}px`);
-        hero.style.setProperty('--parallax-ring', `${scrollY * -0.08}px`);
+        hero.style.setProperty("--parallax-soft", `${scrollY * 0.12}px`);
+        hero.style.setProperty("--parallax-ring", `${scrollY * -0.08}px`);
       }
 
-      if (profileCard) {
-        profileCard.style.setProperty('--parallax-card', `${scrollY * -0.035}px`);
+      if (profileCard && window.innerWidth > 720) {
+        profileCard.style.setProperty("--parallax-card", `${scrollY * -0.035}px`);
       }
 
-      if (aboutMainImg) {
+      if (aboutMainImg && window.innerWidth > 720) {
         const rect = aboutMainImg.getBoundingClientRect();
         const movement = (rect.top - window.innerHeight / 2) * -0.03;
-        aboutMainImg.style.setProperty('--about-img-parallax', `${movement}px`);
+        aboutMainImg.style.setProperty("--about-img-parallax", `${movement}px`);
       }
 
-      productImages.forEach(img => {
-        const parent = img.closest('.product-card');
-        const rect = parent.getBoundingClientRect();
-        const movement = (rect.top - window.innerHeight / 2) * -0.035;
-        img.style.setProperty('--img-parallax', `${movement}px`);
-      });
+      if (window.innerWidth > 720) {
+        productImages.forEach(img => {
+          const parent = img.closest(".product-card");
+          const rect = parent.getBoundingClientRect();
+          const movement = (rect.top - window.innerHeight / 2) * -0.035;
+          img.style.setProperty("--img-parallax", `${movement}px`);
+        });
+      }
 
-      if (contactBox) {
+      if (contactBox && window.innerWidth > 720) {
         const rect = contactBox.getBoundingClientRect();
         const movement = (rect.top - window.innerHeight / 2) * -0.025;
-        contactBox.style.setProperty('--contact-parallax', `${movement}px`);
+        contactBox.style.setProperty("--contact-parallax", `${movement}px`);
       }
     }
 
@@ -1136,8 +1273,10 @@
       }
     }
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('load', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("load", handleScroll);
+    window.addEventListener("resize", handleScroll);
+
     handleScroll();
   </script>
 </body>

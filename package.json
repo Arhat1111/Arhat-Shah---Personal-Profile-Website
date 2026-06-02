@@ -1,0 +1,15 @@
+{
+  "name": "arhat-shah-personal-profile-website",
+  "version": "1.0.0",
+  "description": "Personal profile website for Arhat Shah",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  },
+  "devDependencies": {},
+  "author": "Arhat Shah",
+  "license": "ISC"
+}

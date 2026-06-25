@@ -3,1269 +3,366 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arhat Shah | Student Programmer</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #f7f4ef;
-      --card: #ffffff;
-      --text: #1f1f1f;
-      --muted: #666666;
-      --soft: #e8dfd3;
-      --border: #ded6cc;
-      --shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-      overflow-x: hidden;
-    }
-
-    body {
-      font-family: Inter, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      width: 100%;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1120px, 92%);
-      margin: auto;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 2000;
-      backdrop-filter: blur(16px);
-      background: rgba(247, 244, 239, 0.88);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-      overflow: visible;
-    }
-
-    nav {
-      height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      overflow: visible;
-    }
-
-    .logo {
-      font-weight: 800;
-      font-size: 1.25rem;
-      letter-spacing: -0.04em;
-    }
-
-    .logo span {
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      transition: 0.25s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-btn {
-      border: 1px solid var(--text);
-      padding: 10px 18px;
-      border-radius: 999px;
-      color: var(--text) !important;
-    }
-
-    .menu-btn {
-      display: none;
-      background: transparent;
-      border: none;
-      font-size: 2rem;
-      cursor: pointer;
-      color: #111;
-      z-index: 3000;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      align-items: center;
-      padding-top: 110px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 380px;
-      height: 380px;
-      background: var(--soft);
-      border-radius: 50%;
-      top: 18%;
-      right: -110px;
-      filter: blur(4px);
-      opacity: 0.7;
-      z-index: -1;
-      transform: translateY(var(--parallax-soft, 0px));
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 50%;
-      left: 5%;
-      bottom: 12%;
-      z-index: -1;
-      transform: translateY(var(--parallax-ring, 0px));
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 8px 14px;
-      color: var(--muted);
-      font-size: 0.88rem;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      background: #28b463;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 8vw, 6.8rem);
-      line-height: 0.92;
-      letter-spacing: -0.08em;
-      margin-bottom: 24px;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 620px;
-      margin-bottom: 32px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 22px;
-      border-radius: 999px;
-      border: 1px solid var(--text);
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.25s ease;
-    }
-
-    .btn.primary {
-      background: var(--text);
-      color: #fff;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
-    }
-
-    .profile-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 34px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      transform: rotate(1.5deg) translateY(var(--parallax-card, 0px));
-      animation: floatCard 5s ease-in-out infinite;
-    }
-
-    @keyframes floatCard {
-      0%, 100% {
-        margin-top: 0;
-      }
-
-      50% {
-        margin-top: -10px;
-      }
-    }
-
-    .avatar {
-      height: 290px;
-      border-radius: 28px;
-      background: linear-gradient(135deg, #111, #3a332c, #cdbfae);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-size: 6rem;
-      font-weight: 800;
-      letter-spacing: -0.08em;
-      margin-bottom: 24px;
-    }
-
-    .profile-card h3 {
-      font-size: 1.5rem;
-      letter-spacing: -0.04em;
-    }
-
-    .profile-card p {
-      margin: 8px 0 20px;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    .mini-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .mini-stat {
-      background: var(--bg);
-      border-radius: 18px;
-      padding: 14px;
-      text-align: center;
-    }
-
-    .mini-stat strong {
-      display: block;
-      font-size: 1.2rem;
-    }
-
-    .mini-stat span {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    section {
-      padding: 95px 0;
-      overflow: hidden;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 24px;
-      margin-bottom: 34px;
-    }
-
-    .section-head h2 {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: 1;
-      letter-spacing: -0.07em;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      max-width: 430px;
-    }
-
-    .about-section {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about-banner {
-      position: absolute;
-      inset: 70px 0 auto 0;
-      height: 430px;
-      background:
-        linear-gradient(135deg, rgba(10, 10, 10, 0.88), rgba(34, 29, 24, 0.78)),
-        url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80") center/cover fixed;
-      border-radius: 0 0 48px 48px;
-      z-index: -2;
-    }
-
-    .about-banner::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.38)),
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 32%),
-        radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.08), transparent 28%);
-      z-index: -1;
-    }
-
-    .section-tag {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      margin-bottom: 14px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      color: #ffffff;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-    }
-
-    .about-hero {
-      min-height: 430px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 38px;
-      align-items: center;
-      color: #fff;
-      padding: 70px 0 40px;
-      position: relative;
-      z-index: 3;
-    }
-
-    .about-hero h2 {
-      font-size: clamp(2.35rem, 5vw, 5rem);
-      line-height: 0.96;
-      letter-spacing: -0.075em;
-      max-width: 760px;
-      margin-bottom: 20px;
-      color: #ffffff;
-      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-      font-weight: 800;
-    }
-
-    .about-hero p {
-      max-width: 630px;
-      color: rgba(255, 255, 255, 0.92);
-      font-size: 1.08rem;
-      line-height: 1.8;
-      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
-      font-weight: 500;
-    }
-
-    .about-image-wrap {
-      height: 330px;
-      border-radius: 34px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
-      transform: rotate(1.5deg);
-    }
-
-    .about-main-img {
-      width: 100%;
-      height: 115%;
-      object-fit: cover;
-      display: block;
-      transform: translateY(var(--about-img-parallax, 0px));
-    }
-
-    .about-story-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr 0.8fr;
-      gap: 22px;
-      margin-top: 34px;
-    }
-
-    .story-card {
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 28px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.06);
-      backdrop-filter: blur(16px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .story-card::before {
-      content: "";
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: var(--soft);
-      right: -45px;
-      top: -45px;
-      opacity: 0.45;
-      transition: 0.35s ease;
-    }
-
-    .story-card:hover::before {
-      transform: scale(1.35);
-    }
-
-    .story-card.large {
-      grid-row: span 2;
-    }
-
-    .story-card h3,
-    .skills-panel h3 {
-      font-size: 1.45rem;
-      letter-spacing: -0.045em;
-      margin-bottom: 12px;
-      position: relative;
-    }
-
-    .story-card p {
-      color: var(--muted);
-      position: relative;
-    }
-
-    .story-card p + p {
-      margin-top: 14px;
-    }
-
-    .card-number {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: var(--muted);
-      margin-bottom: 28px;
-      letter-spacing: 0.14em;
-    }
-
-    .skills-panel {
-      margin-top: 22px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 32px;
-      display: grid;
-      grid-template-columns: 0.75fr 1.25fr;
-      gap: 28px;
-      align-items: start;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.055);
-    }
-
-    .skills-panel .section-tag {
-      background: var(--bg);
-      border-color: var(--border);
-      color: var(--text);
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .skill {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 0.9rem;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .product-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.045);
-      transition: 0.3s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow);
-    }
-
-    .product-img {
-      height: 220px;
-      overflow: hidden;
-      background: #f2f2f2;
-    }
-
-    .product-img img {
-      width: 100%;
-      height: 120%;
-      object-fit: cover;
-      object-position: top;
-      transition: 0.5s ease;
-      display: block;
-      transform: translateY(var(--img-parallax, 0px));
-    }
-
-    .product-card:hover .product-img img {
-      transform: scale(1.05);
-    }
-
-    .product-body {
-      padding: 24px;
-    }
-
-    .product-body small {
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.72rem;
-    }
-
-    .product-body h3 {
-      margin: 8px 0;
-      font-size: 1.25rem;
-      letter-spacing: -0.04em;
-    }
-
-    .product-body p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 18px;
-    }
-
-    .product-link {
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .contact-box {
-      background: #111;
-      color: #fff;
-      border-radius: 36px;
-      padding: 56px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 30px;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      transform: translateY(var(--contact-parallax, 0px));
-    }
-
-    .contact-box::after {
-      content: "";
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 50%;
-      right: -80px;
-      bottom: -80px;
-    }
-
-    .contact-box h2 {
-      font-size: clamp(2.2rem, 5vw, 4.4rem);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-      margin-bottom: 18px;
-    }
-
-    .contact-box p {
-      color: rgba(255, 255, 255, 0.72);
-      max-width: 560px;
-    }
-
-    .contact-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      z-index: 2;
-    }
-
-    .contact-actions .btn {
-      background: #fff;
-      color: #111;
-      border-color: #fff;
-    }
-
-    footer {
-      padding: 30px 0;
-      color: var(--muted);
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(42px) scale(0.98);
-      transition: opacity 0.75s ease, transform 0.75s ease;
-      transition-delay: var(--delay, 0s);
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    @media (max-width: 900px) {
-      .hero-grid,
-      .about-hero,
-      .about-story-grid,
-      .skills-panel,
-      .contact-box {
-        grid-template-columns: 1fr;
-      }
-
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .profile-card {
-        transform: none !important;
-      }
-
-      .about-banner {
-        background-attachment: scroll;
-        height: 520px;
-      }
-
-      .about-image-wrap {
-        transform: none;
-      }
-
-      .story-card.large {
-        grid-row: auto;
-      }
-    }
-
-    @media (max-width: 720px) {
-      html,
-      body {
-        width: 100%;
-        overflow-x: hidden;
-      }
-
-      body {
-        text-align: center;
-      }
-
-      .container {
-        width: 100%;
-        max-width: 100%;
-        padding: 0 18px;
-        margin: 0 auto;
-        overflow: hidden;
-      }
-
-      nav {
-        height: 68px;
-      }
-
-      .logo {
-        font-size: 1rem;
-      }
-
-      .menu-btn {
-        display: block;
-        position: relative;
-        z-index: 3001;
-        background: transparent;
-        border: none;
-        color: #111;
-        font-size: 2rem;
-        line-height: 1;
-        cursor: pointer;
-      }
-
-      .nav-links {
-        position: fixed;
-        top: 68px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        background: rgba(247, 244, 239, 0.98);
-        backdrop-filter: blur(20px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 22px;
-        padding: 30px 20px;
-        border-bottom: 1px solid var(--border);
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transform: translateY(-15px);
-        transition: all 0.3s ease;
-        z-index: 3000;
-      }
-
-      .nav-links.active {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: translateY(0);
-      }
-
-      .nav-links a {
-        font-size: 1rem;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 105px;
-        padding-bottom: 55px;
-      }
-
-      .hero::before {
-        width: 260px;
-        height: 260px;
-        right: -70px;
-        top: 35%;
-      }
-
-      .hero::after {
-        display: none;
-      }
-
-      .hero-grid {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 34px;
-        width: 100%;
-      }
-
-      .eyebrow {
-        max-width: 100%;
-        font-size: 0.75rem;
-        padding: 8px 12px;
-        margin-left: auto;
-        margin-right: auto;
-        white-space: normal;
-      }
-
-      h1 {
-        font-size: 3.05rem;
-        line-height: 0.95;
-        text-align: center;
-      }
-
-      .hero p {
-        max-width: 330px;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 1rem;
-      }
-
-      .hero-actions {
-        justify-content: center;
-        width: 100%;
-      }
-
-      .btn {
-        min-height: 46px;
-        padding: 0 18px;
-        font-size: 0.9rem;
-      }
-
-      .profile-card {
-        width: 100%;
-        max-width: 330px;
-        margin: 0 auto;
-        padding: 22px;
-        transform: none !important;
-        animation: none;
-      }
-
-      .avatar {
-        height: 230px;
-        font-size: 4.5rem;
-      }
-
-      .mini-stats {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 65px 0;
-      }
-
-      .section-head {
-        display: block;
-        text-align: center;
-      }
-
-      .section-head p {
-        margin: 14px auto 0;
-      }
-
-      .about-hero,
-      .about-story-grid,
-      .skills-panel,
-      .products-grid,
-      .contact-box {
-        grid-template-columns: 1fr !important;
-        width: 100%;
-      }
-
-      .about-banner {
-        height: 620px;
-        border-radius: 0 0 32px 32px;
-      }
-
-      .about-hero {
-        text-align: center;
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .about-hero h2 {
-        font-size: 2.4rem;
-      }
-
-      .about-hero p {
-        font-size: 1rem;
-      }
-
-      .about-image-wrap,
-      .product-card {
-        max-width: 330px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .skills-panel {
-        padding: 24px;
-      }
-
-      .skills {
-        justify-content: center;
-      }
-
-      .product-img {
-        height: 200px;
-      }
-
-      .contact-box {
-        padding: 34px 22px;
-      }
-
-      .contact-actions {
-        align-items: center;
-      }
-
-      .contact-actions .btn {
-        width: 100%;
-        max-width: 260px;
-      }
-    }
-  </style>
+  <meta name="description" content="Arhat Shah — creative developer building distinctive, fast and immersive websites." />
+  <meta name="theme-color" content="#0b0b0b" />
+  <title>Arhat Shah — Creative Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#home" class="logo">Arhat<span>.dev</span></a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-        <button id="menuBtn" class="menu-btn" type="button">☰</button>
+  <div class="page-progress" aria-hidden="true"><span></span></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor cursor--dot" aria-hidden="true"></div>
+  <div class="cursor cursor--ring" aria-hidden="true"></div>
 
-        <div class="nav-links" id="navLinks">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#work">Work</a>
-          <a href="#contact" class="nav-btn">Contact</a>
-        </div>
-      </nav>
-    </div>
+  <header class="site-header" id="top">
+    <a class="brand magnetic" href="#hero" aria-label="Arhat Shah home">
+      <span class="brand-mark">A</span>
+      <span class="brand-copy">ARHAT SHAH<br /><small>CREATIVE DEVELOPER</small></span>
+    </a>
+
+    <button class="menu-toggle magnetic" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Toggle navigation</span>
+      <span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div class="reveal">
-          <div class="eyebrow">
-            <span class="dot"></span>
-            Student Programmer • Fountainhead School
-          </div>
+  <main id="main">
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-sticky">
+        <div class="hero-grid" aria-hidden="true"></div>
 
-          <h1>Hi, I’m<br>Arhat Shah.</h1>
+        <p class="hero-kicker reveal">Independent creative developer · Surat, India</p>
 
-          <p>
-            I am a student at Fountainhead School learning programming and building clean,
-            useful websites and digital projects. This profile showcases who I am, what I am
-            learning, and the online work I have created.
-          </p>
+        <h1 class="hero-title" id="hero-title" aria-label="I build websites that move">
+          <span class="hero-line hero-line--one" data-depth="0.11">I BUILD</span>
+          <span class="hero-line hero-line--two" data-depth="-0.08">WEBSITES</span>
+          <span class="hero-line hero-line--three" data-depth="0.15">THAT <em>MOVE.</em></span>
+        </h1>
 
-          <div class="hero-actions">
-            <a href="#work" class="btn primary">View My Work</a>
-            <a href="#contact" class="btn">Get in Touch</a>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit-ring orbit-ring--one"></div>
+          <div class="orbit-ring orbit-ring--two"></div>
+          <div class="orbit-core"><span>AS</span></div>
+          <div class="orbit-chip orbit-chip--one">DESIGN</div>
+          <div class="orbit-chip orbit-chip--two">CODE</div>
+          <div class="orbit-chip orbit-chip--three">MOTION</div>
+        </div>
+
+        <div class="hero-bottom">
+          <p>Minimal interfaces, thoughtful motion and memorable digital experiences.</p>
+          <a class="scroll-cue magnetic" href="#about">
+            <span>Scroll to explore</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m0 0-6-6m6 6 6-6" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section" id="about" aria-labelledby="about-title">
+      <div class="section-shell about-grid">
+        <div class="section-index" data-parallax="-0.05">
+          <span>01</span>
+          <p>About</p>
+        </div>
+
+        <div class="about-copy">
+          <p class="eyebrow reveal">A digital playground with a purpose</p>
+          <h2 id="about-title" class="display-copy split-reveal">
+            I turn ideas into <span>clear, expressive</span> and high-performing web experiences.
+          </h2>
+
+          <div class="about-details">
+            <p class="reveal">I am Arhat Shah, a creative developer focused on building websites that feel premium without becoming complicated. My work combines clean visual systems, strong typography and motion that supports the story.</p>
+            <p class="reveal">From jewellery and food brands to personal portfolios, I create responsive experiences that remain fast, accessible and easy to use across devices.</p>
           </div>
         </div>
 
-        <div class="profile-card reveal">
-          <div class="avatar">AS</div>
-          <h3>Arhat Shah</h3>
-          <p>
-            Programming learner focused on websites, design, frontend development,
-            and practical digital solutions.
-          </p>
+        <div class="about-visual" data-parallax="0.08" aria-hidden="true">
+          <div class="portrait-card">
+            <div class="portrait-lines"></div>
+            <div class="portrait-type">A/S</div>
+            <span class="portrait-caption">DESIGN × DEVELOPMENT</span>
+          </div>
+          <div class="floating-note floating-note--one">BASED IN<br />SURAT</div>
+          <div class="floating-note floating-note--two">AVAILABLE<br />WORLDWIDE</div>
+        </div>
+      </div>
+    </section>
 
-          <div class="mini-stats">
-            <div class="mini-stat">
-              <strong>HTML</strong>
-              <span>Structure</span>
+    <section class="work-intro section" id="work" aria-labelledby="work-title">
+      <div class="section-shell">
+        <div class="work-heading">
+          <div class="section-index">
+            <span>02</span>
+            <p>Selected work</p>
+          </div>
+          <h2 id="work-title" class="display-copy split-reveal">A selection of websites made to be <span>seen, felt and remembered.</span></h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" aria-label="Portfolio projects">
+      <div class="projects-sticky">
+        <div class="projects-counter" aria-hidden="true"><span id="project-current">01</span><i></i><span id="project-total">07</span></div>
+
+        <div class="project-track">
+          <article class="project-card project-card--rose" data-project="1">
+            <div class="project-meta">
+              <span>01 / JEWELLERY</span>
+              <span>LIVE PROJECT</span>
             </div>
-            <div class="mini-stat">
-              <strong>CSS</strong>
-              <span>Design</span>
+            <div class="project-preview browser-preview preview-jewels" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span>seramoree.com</span></div>
+              <div class="jewel-nav">SERAMORE <small>JEWELS</small></div>
+              <div class="jewel-scene">
+                <div class="jewel-copy"><small>FINE JEWELLERY · SURAT</small><b>Timeless pieces.<br />Refined presence.</b><i>Explore collection →</i></div>
+                <div class="jewel-shape"><span></span></div>
+              </div>
             </div>
-            <div class="mini-stat">
-              <strong>JS</strong>
-              <span>Interaction</span>
+            <div class="project-copy">
+              <div>
+                <h3>Seramore Jewels</h3>
+                <p>A premium jewellery website created to present elegant products, brand identity and a direct inquiry-led experience.</p>
+              </div>
+              <a class="circle-link magnetic" href="https://www.seramoree.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Seramore Jewels website">↗</a>
             </div>
+          </article>
+
+          <article class="project-card project-card--cream" data-project="2">
+            <div class="project-meta">
+              <span>02 / FASHION & E-COMMERCE</span>
+              <span>LIVE PROJECT</span>
+            </div>
+            <div class="project-preview browser-preview preview-fashion" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span>fablebykavitaanu.in</span></div>
+              <div class="fashion-scene">
+                <div class="fashion-word">FABLE</div>
+                <div class="fashion-copy"><small>SURAT · SINCE 2018</small><b>Stitching<br />stories.</b><span>Indian ethnic wear for modern celebrations.</span></div>
+                <div class="fashion-figure"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+            <div class="project-copy">
+              <div>
+                <h3>Fable by Kavita Anu</h3>
+                <p>An elegant Indian ethnic-wear storefront blending traditional craft, modern styling and an accessible shopping journey.</p>
+              </div>
+              <a class="circle-link magnetic" href="https://www.fablebykavitaanu.in/" target="_blank" rel="noopener noreferrer" aria-label="Visit Fable by Kavita Anu website">↗</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--navy" data-project="3">
+            <div class="project-meta">
+              <span>03 / FINANCIAL SERVICES</span>
+              <span>LIVE PROJECT</span>
+            </div>
+            <div class="project-preview browser-preview preview-finance" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span>yataxfinity.com</span></div>
+              <div class="finance-grid">
+                <div class="finance-copy"><small>CLARITY FOR EVERY NUMBER</small><b>Finance made<br />simple.</b><span>Tax · compliance · advisory</span></div>
+                <div class="finance-dashboard">
+                  <div class="finance-ring"><span>∞</span></div>
+                  <div class="finance-bars"><i></i><i></i><i></i><i></i><i></i></div>
+                  <p>GROWTH / CONTROL / CONFIDENCE</p>
+                </div>
+              </div>
+            </div>
+            <div class="project-copy">
+              <div>
+                <h3>Yataxfinity</h3>
+                <p>A clean, professional website for a financial-services provider, designed to communicate expertise with simplicity.</p>
+              </div>
+              <a class="circle-link magnetic" href="https://yataxfinity.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Yataxfinity website">↗</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--green" data-project="4">
+            <div class="project-meta">
+              <span>04 / LANDSCAPING</span>
+              <span>LIVE PROJECT</span>
+            </div>
+            <div class="project-preview browser-preview preview-garden" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span>blooms-n-breezes</span></div>
+              <div class="garden-sky"><span>BLOOMS<br />N BREEZES</span><small>NURTURING NATURE · ENRICHING LIVES</small></div>
+              <div class="garden-land">
+                <div class="garden-copy"><b>Where gardens<br />stay green.</b><i>Explore services →</i></div>
+                <div class="garden-plants"><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <div class="project-copy">
+              <div>
+                <h3>Blooms N Breezes</h3>
+                <p>A service-focused landscaping and gardening website built around natural visuals, trust and clear customer pathways.</p>
+              </div>
+              <a class="circle-link magnetic" href="https://arhat1111.github.io/Blooms-N-Breezes-Professional-Landscaping-Gardening-Solutions/" target="_blank" rel="noopener noreferrer" aria-label="Visit Blooms N Breezes website">↗</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--orange" data-project="5">
+            <div class="project-meta">
+              <span>05 / PRINTING & BRANDING</span>
+              <span>LIVE PROJECT</span>
+            </div>
+            <div class="project-preview browser-preview preview-print" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span>printleisure.com</span></div>
+              <div class="print-scene">
+                <div class="print-type"><small>PRINT · BRAND · CREATE</small><b>MAKE<br />YOUR MARK.</b></div>
+                <div class="print-stack"><span>P</span><span>L</span><span>+</span></div>
+                <div class="print-label">PACKAGING / MERCH / SIGNAGE</div>
+              </div>
+            </div>
+            <div class="project-copy">
+              <div>
+                <h3>Print Leisure</h3>
+                <p>A bold, modern website for presenting printing, branding and creative production services with immediate visual impact.</p>
+              </div>
+              <a class="circle-link magnetic" href="https://www.printleisure.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Print Leisure website">↗</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--red" data-project="6">
+            <div class="project-meta">
+              <span>06 / RESTAURANT</span>
+              <span>LIVE PROJECT</span>
+            </div>
+            <div class="project-preview browser-preview preview-chinese" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span>chaluchinese.ca</span></div>
+              <div class="chinese-scene">
+                <div class="chinese-stamp">CC</div>
+                <div class="chinese-copy"><small>AAPNA DESI TADKA</small><b>CHALU<br />CHINESE</b><span>Bold flavour. Street-food energy.</span></div>
+                <div class="chinese-bowl"><i></i><i></i><i></i><i></i></div>
+              </div>
+            </div>
+            <div class="project-copy">
+              <div>
+                <h3>Chalu Chinese</h3>
+                <p>A vibrant restaurant website that expresses the brand’s Indo-Chinese flavour, personality and online presence.</p>
+              </div>
+              <a class="circle-link magnetic" href="https://chaluchinese.ca/" target="_blank" rel="noopener noreferrer" aria-label="Visit Chalu Chinese website">↗</a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--blue" data-project="7">
+            <div class="project-meta">
+              <span>07 / INTERIOR DECOR</span>
+              <span>LIVE PROJECT</span>
+            </div>
+            <div class="project-preview browser-preview preview-decor" aria-hidden="true">
+              <div class="browser-bar"><i></i><i></i><i></i><span>mahendradecorwalls.in</span></div>
+              <div class="decor-grid">
+                <div class="decor-copy"><small>SPACES WITH CHARACTER</small><b>Walls that<br />shape a room.</b></div>
+                <div class="decor-wall"><span></span><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <div class="project-copy">
+              <div>
+                <h3>Mahendra Decor Walls</h3>
+                <p>A professional decor website structured to showcase wall treatments, products, services and completed work.</p>
+              </div>
+              <a class="circle-link magnetic" href="https://mahendradecorwalls.in/" target="_blank" rel="noopener noreferrer" aria-label="Visit Mahendra Decor Walls website">↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="services section" id="services" aria-labelledby="services-title">
+      <div class="service-orb service-orb--one" data-parallax="0.10" aria-hidden="true"></div>
+      <div class="service-orb service-orb--two" data-parallax="-0.08" aria-hidden="true"></div>
+
+      <div class="section-shell services-grid">
+        <div class="section-index">
+          <span>03</span>
+          <p>Capabilities</p>
+        </div>
+
+        <div class="services-content">
+          <p class="eyebrow reveal">From first sketch to final interaction</p>
+          <h2 id="services-title" class="display-copy split-reveal">One focused process. <span>Every essential layer.</span></h2>
+
+          <div class="service-list">
+            <article class="service-item reveal">
+              <span>01</span>
+              <h3>Creative direction</h3>
+              <p>Visual concepts, mood, typography and a clear system that makes the brand recognizable.</p>
+              <i>↗</i>
+            </article>
+            <article class="service-item reveal">
+              <span>02</span>
+              <h3>Web design</h3>
+              <p>Responsive page structures, refined interfaces and user journeys designed around real goals.</p>
+              <i>↗</i>
+            </article>
+            <article class="service-item reveal">
+              <span>03</span>
+              <h3>Development</h3>
+              <p>Clean HTML, CSS and JavaScript with accessibility, performance and maintainability in mind.</p>
+              <i>↗</i>
+            </article>
+            <article class="service-item reveal">
+              <span>04</span>
+              <h3>Motion & interaction</h3>
+              <p>Parallax, transitions and micro-interactions that create depth without distracting from content.</p>
+              <i>↗</i>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="about-section">
-      <div class="about-banner"></div>
-
-      <div class="container">
-        <div class="about-hero reveal">
-          <div>
-            <span class="section-tag">About Me</span>
-            <h2>Building clean digital experiences with code, design, and curiosity.</h2>
-            <p>
-              I’m Arhat Shah, a student at Fountainhead School and a programming learner
-              focused on creating modern websites, digital products, and interactive user experiences.
-            </p>
-          </div>
-
-          <div class="about-image-wrap">
-            <img
-              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80"
-              alt="Programming setup"
-              class="about-main-img"
-            />
-          </div>
-        </div>
-
-        <div class="about-story-grid">
-          <div class="story-card large reveal">
-            <h3>My Journey</h3>
-            <p>
-              I started working on programming because I enjoy turning ideas into real websites
-              and digital experiences. I like building projects that are simple to use,
-              visually clean, and useful for people, brands, and businesses.
-            </p>
-            <p>
-              My work includes business websites, portfolio websites, product showcase pages,
-              e-commerce style layouts, and creative frontend projects. I am constantly learning
-              how to improve design, responsiveness, animations, and overall user experience.
-            </p>
-          </div>
-
-          <div class="story-card reveal">
-            <span class="card-number">01</span>
-            <h3>What I Focus On</h3>
-            <p>Minimal layouts, smooth interfaces, responsive design, and professional web experiences.</p>
-          </div>
-
-          <div class="story-card reveal">
-            <span class="card-number">02</span>
-            <h3>How I Learn</h3>
-            <p>I learn by building real projects, improving them, testing ideas, and exploring better design styles.</p>
-          </div>
-
-          <div class="story-card reveal">
-            <span class="card-number">03</span>
-            <h3>My Goal</h3>
-            <p>To become better at programming, design, app development, UI/UX, and useful digital products.</p>
-          </div>
-        </div>
-
-        <div class="skills-panel reveal" id="skills">
-          <div>
-            <span class="section-tag">Skills</span>
-            <h3>Tools, technologies & creative areas I work with</h3>
-          </div>
-
-          <div class="skills">
-            <span class="skill">Python</span>
-            <span class="skill">Data Science</span>
-            <span class="skill">HTML</span>
-            <span class="skill">CSS</span>
-            <span class="skill">JavaScript</span>
-            <span class="skill">Bootstrap</span>
-            <span class="skill">Web Development</span>
-            <span class="skill">App Development</span>
-            <span class="skill">Web Designing</span>
-            <span class="skill">UI/UX Designing</span>
-            <span class="skill">Game Designing</span>
-            <span class="skill">C++</span>
-            <span class="skill">C#</span>
-            <span class="skill">Frontend Development</span>
-            <span class="skill">Responsive Design</span>
-          </div>
+    <section class="manifesto" aria-label="Design statement">
+      <div class="manifesto-sticky">
+        <div class="manifesto-word" aria-hidden="true">DETAILS</div>
+        <p class="manifesto-copy split-reveal">The best websites do more than display information. They create a <span>feeling</span>, guide attention and make every interaction feel intentional.</p>
+        <div class="manifesto-tags" aria-hidden="true">
+          <span>01 — CLARITY</span><span>02 — CHARACTER</span><span>03 — MOTION</span><span>04 — SPEED</span>
         </div>
       </div>
     </section>
 
-    <section id="work">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>Products & Work</h2>
-          <p>
-            A collection of websites and digital projects I have worked on.
-          </p>
-        </div>
-
-        <div class="products-grid">
-          <article class="product-card reveal">
-            <div class="product-img">
-              <img src="https://image.thum.io/get/width/1200/https://www.seramoree.com/" alt="Seramore Jewellery Website Preview">
-            </div>
-            <div class="product-body">
-              <small>Jewellery Website</small>
-              <h3>Seramore Jewels</h3>
-              <p>A premium jewellery website designed to showcase elegant products and brand identity.</p>
-              <a href="https://www.seramoree.com/" target="_blank" class="product-link">View Website →</a>
-            </div>
-          </article>
-
-          <article class="product-card reveal">
-            <div class="product-img">
-              <img src="https://image.thum.io/get/width/1200/https://arhat1111.github.io/Clothing-brand-website/" alt="Clothing Brand Website Preview">
-            </div>
-            <div class="product-body">
-              <small>Fashion Website</small>
-              <h3>Clothing Brand Website</h3>
-              <p>A clothing brand concept with product sections, modern styling, and responsive design.</p>
-              <a href="https://www.fablebykavitaanu.in/" target="_blank" class="product-link">View Website →</a>
-            </div>
-          </article>
-
-          <article class="product-card reveal">
-            <div class="product-img">
-              <img src="https://image.thum.io/get/width/1200/https://yataxfinity.com/" alt="Yataxfinity Website Preview">
-            </div>
-            <div class="product-body">
-              <small>Financial Website</small>
-              <h3>Yataxfinity</h3>
-              <p>A minimal and professional website for a financial service provider.</p>
-              <a href="https://yataxfinity.com" target="_blank" class="product-link">View Website →</a>
-            </div>
-          </article>
-
-          <article class="product-card reveal">
-            <div class="product-img">
-              <img src="https://image.thum.io/get/width/1200/https://arhat1111.github.io/Blooms-N-Breezes-Professional-Landscaping-Gardening-Solutions/" alt="Blooms N Breezes Website Preview">
-            </div>
-            <div class="product-body">
-              <small>Landscaping Website</small>
-              <h3>Blooms N Breezes</h3>
-              <p>A professional landscaping and gardening website with a service-focused layout.</p>
-              <a href="https://arhat1111.github.io/Blooms-N-Breezes-Professional-Landscaping-Gardening-Solutions/" target="_blank" class="product-link">View Website →</a>
-            </div>
-          </article>
-
-          <article class="product-card reveal">
-            <div class="product-img">
-              <img src="https://image.thum.io/get/width/1200/https://www.printleisure.com/" alt="Print Leisure Website Preview">
-            </div>
-            <div class="product-body">
-              <small>Printing Website</small>
-              <h3>Print Leisure</h3>
-              <p>A modern website for showcasing printing, branding, and creative product services.</p>
-              <a href="https://www.printleisure.com/" target="_blank" class="product-link">View Website →</a>
-            </div>
-          </article>
-
-          <article class="product-card reveal">
-            <div class="product-img">
-              <img src="https://image.thum.io/get/width/1200/https://chaluchinese.ca/" alt="Chalu Chinese Website Preview">
-            </div>
-            <div class="product-body">
-              <small>Restaurant Website</small>
-              <h3>Chalu Chinese</h3>
-              <p>A restaurant website designed to showcase food, brand identity, and online presence.</p>
-              <a href="https://chaluchinese.ca" target="_blank" class="product-link">View Website →</a>
-            </div>
-          </article>
-
-          <article class="product-card reveal">
-            <div class="product-img">
-              <img src="https://image.thum.io/get/width/1200/https://mahendradecorwalls.in/" alt="Mahendra Decor Walls Website Preview">
-            </div>
-            <div class="product-body">
-              <small>Interior Decor Website</small>
-              <h3>Mahendra Decor Walls</h3>
-              <p>A professional decor and wall design website built to showcase products and services.</p>
-              <a href="https://mahendradecorwalls.in/" target="_blank" class="product-link">View Website →</a>
-            </div>
-          </article>
-        </div>
+    <section class="contact section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-rings" aria-hidden="true">
+        <span></span><span></span><span></span>
       </div>
-    </section>
 
-    <section id="contact">
-      <div class="container">
-        <div class="contact-box reveal">
-          <div>
-            <h2>Let’s connect.</h2>
-            <p>
-              I am open to learning opportunities, website projects, collaborations,
-              and feedback on my programming journey.
-            </p>
-          </div>
+      <div class="section-shell contact-content">
+        <p class="eyebrow reveal">Have an idea?</p>
+        <h2 id="contact-title" class="contact-title split-reveal">LET’S MAKE IT<br /><span>IMPOSSIBLE TO IGNORE.</span></h2>
 
-          <div class="contact-actions">
-            <a href="mailto:your-email@example.com" class="btn">Email Me</a>
-            <a href="https://wa.me/919999999999" target="_blank" class="btn">Message on WhatsApp</a>
-            <a href="#work" class="btn">See My Work</a>
-          </div>
+        <div class="contact-actions">
+          <a class="contact-button magnetic" href="mailto:hello@arhatshah.com">
+            <span>Start a project</span>
+            <i>↗</i>
+          </a>
+          <button class="copy-email magnetic" type="button" data-email="arhat.j.h.1111@gmail.com">
+            <span>arhat.j.h.1111@gmail.com</span>
+            <small>Copy email</small>
+          </button>
         </div>
+
+        <footer class="footer">
+          <p>© <span id="year"></span> Arhat Shah</p>
+          <div>
+            <a href="https://in.linkedin.com/in/arhat-shah-45a94635a?trk=people-guest_people_search-card" aria-label="LinkedIn profile">LinkedIn</a>
+            <a href="https://github.com/Arhat1111" aria-label="GitHub profile">GitHub</a>
+          </div>
+          <a href="#top">Back to top ↑</a>
+        </footer>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      © <span id="year"></span> Arhat Shah. Built with HTML, CSS & JavaScript.
-    </div>
-  </footer>
-
-  <script>
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
-
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-      menuBtn.innerHTML = navLinks.classList.contains("active") ? "✕" : "☰";
-    });
-
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
-        menuBtn.innerHTML = "☰";
-      });
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const revealElements = document.querySelectorAll(".reveal");
-    const productImages = document.querySelectorAll(".product-img img");
-    const hero = document.querySelector(".hero");
-    const profileCard = document.querySelector(".profile-card");
-    const contactBox = document.querySelector(".contact-box");
-    const aboutMainImg = document.querySelector(".about-main-img");
-
-    revealElements.forEach((element, index) => {
-      element.style.setProperty("--delay", `${Math.min(index * 0.05, 0.35)}s`);
-    });
-
-    function revealOnScroll() {
-      revealElements.forEach(element => {
-        const windowHeight = window.innerHeight;
-        const elementTop = element.getBoundingClientRect().top;
-
-        if (elementTop < windowHeight - 110) {
-          element.classList.add("active");
-        }
-      });
-    }
-
-    function parallaxScroll() {
-      const scrollY = window.scrollY;
-
-      if (hero) {
-        hero.style.setProperty("--parallax-soft", `${scrollY * 0.12}px`);
-        hero.style.setProperty("--parallax-ring", `${scrollY * -0.08}px`);
-      }
-
-      if (profileCard && window.innerWidth > 720) {
-        profileCard.style.setProperty("--parallax-card", `${scrollY * -0.035}px`);
-      }
-
-      if (aboutMainImg && window.innerWidth > 720) {
-        const rect = aboutMainImg.getBoundingClientRect();
-        const movement = (rect.top - window.innerHeight / 2) * -0.03;
-        aboutMainImg.style.setProperty("--about-img-parallax", `${movement}px`);
-      }
-
-      if (window.innerWidth > 720) {
-        productImages.forEach(img => {
-          const parent = img.closest(".product-card");
-          const rect = parent.getBoundingClientRect();
-          const movement = (rect.top - window.innerHeight / 2) * -0.035;
-          img.style.setProperty("--img-parallax", `${movement}px`);
-        });
-      }
-
-      if (contactBox && window.innerWidth > 720) {
-        const rect = contactBox.getBoundingClientRect();
-        const movement = (rect.top - window.innerHeight / 2) * -0.025;
-        contactBox.style.setProperty("--contact-parallax", `${movement}px`);
-      }
-    }
-
-    let ticking = false;
-
-    function handleScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          revealOnScroll();
-          parallaxScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("load", handleScroll);
-    window.addEventListener("resize", handleScroll);
-
-    handleScroll();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

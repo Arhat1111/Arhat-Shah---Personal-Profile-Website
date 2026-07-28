@@ -1,0 +1,23 @@
+{
+  "name": "primary",
+  "version": "1.0.0",
+  "description": "A responsive, dependency-light portfolio built with plain HTML, CSS and JavaScript.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arhat1111/Arhat-Shah---Personal-Profile-Website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arhat1111/Arhat-Shah---Personal-Profile-Website/issues"
+  },
+  "homepage": "https://github.com/Arhat1111/Arhat-Shah---Personal-Profile-Website#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
